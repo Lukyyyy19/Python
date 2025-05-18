@@ -73,5 +73,84 @@ def minimo(lista:list[int])->int:
 # }
 
 def ordenados(lista:list[int])->bool:
-    auxAnterior:int = lista[0]
+    auxAnterior:int=lista[0]
+    for i in range(1,len(lista)):
+        if(auxAnterior>lista[1]):
+            return False
+    return True
     
+# 7. problema pos maximo (in s:seq⟨Z⟩) : Z {
+# requiere: { T rue }
+# asegura: { (Si |s| = 0, entonces res = −1; si no, res = al ´ındice de la posici´on donde aparece el mayor elemento
+# de s (si hay varios es la primera aparici´on) }
+# }
+
+def pos_aximo(lista:list[int])->int:
+    for i in range(len(lista)):
+        if(lista[i]==maximo(lista)):
+            return i
+    return -1
+
+# 8. problema pos minimo (in s:seq⟨Z⟩) : Z {
+# requiere: { T rue }
+# asegura: { (Si |s| = 0, entonces res = −1; si no, res = al ´ındice de la posici´on donde aparece el menor elemento
+# de s (si hay varios es la ´ultima aparici´on) }
+# }
+
+def pos_minimo(lista:list[int])->int:
+    for i in range(len(lista)):
+        if(lista[i]==minimo(lista)):
+            return i
+    return -1
+
+# 9. Dada una lista de palabras (seq⟨seq⟨Char⟩⟩), devolver verdadero si alguna palabra tiene longitud mayor a 7. Ejemplo:
+# [“termo”, “gato”, “tener”, “jirafas”], devuelve falso.
+# problema long mayorASiete (in s:seq⟨seq⟨Char⟩⟩) : Bool {
+# requiere: { T rue }
+# asegura: { (res = true) ↔ (existe i ∈ Z tal que (0 ≤ i < (|s| − 1)) y (|s[i]| > 7) }
+# }
+
+def long_mayorASiete(lista:list[str])->bool:
+    for i in lista:
+        if(len(i)>7):
+            return True
+    return False
+
+# 10. Dado un texto en formato string, devolver verdadero si es pal´ındromo (se lee igual en ambos sentidos), falso en caso
+# contrario. Las cadenas de texto vac´ıas o con 1 s´olo elemento son pal´ındromo.
+# problema es palindroma (in s:seq⟨Char⟩) : Bool {
+# requiere: { T rue }
+# asegura: { (res = true) ↔ (s es igual a su reverso) }
+# }
+
+def es_palindroma(palabra:str)->bool:
+    return palabra == revertir(palabra)
+
+def revertir(palabra:str)->str:
+    palabraRevertida:str=""
+    for i in range((len(palabra)-1),-1,-1):
+        palabraRevertida+=palabra[i]
+    return palabraRevertida
+
+# 11. Recorrer una seq⟨Z⟩ y devolver verdadero si hay 3 n´umeros iguales consecutivos, en cualquier posici´on y False en caso
+# contrario.
+# problema iguales consecutivos (in s:seq⟨Z⟩) : Bool {
+# requiere: { T rue }
+# asegura: { (res = true) ↔ (existe i, j, k ∈ Z tal que (0 ≤ i, j, k < (|s| − 1)) y (i + 2 = j + 1 = k) y
+# (s[i] = s[j] = s[k])) }
+# }
+
+def iguales_consecutivos(lista:list[int])->bool:
+    sonIguales:bool=False
+    indice:int=0
+    while(not sonIguales):
+        if(not son_todos_iguales([lista[indice]]))
+        
+def son_todos_iguales(lista:list[int])->bool:
+    for i in lista:
+        if(i!=lista[0]):
+            return False
+    return True
+
+
+          
