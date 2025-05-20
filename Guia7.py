@@ -144,7 +144,16 @@ def iguales_consecutivos(lista:list[int])->bool:
     sonIguales:bool=False
     indice:int=0
     while(not sonIguales):
-        if(not son_todos_iguales([lista[indice]]))
+        if(not((indice+2)>=len(lista))and(son_todos_iguales([lista[indice],lista[indice+1],lista[indice+2]]))):
+            sonIguales=True
+            print(lista[indice],lista[indice+1],lista[indice+2])
+            return True
+        indice+=1
+        if(indice+2>=len(lista)):
+            sonIguales=False
+            return False
+    return False
+
         
 def son_todos_iguales(lista:list[int])->bool:
     for i in lista:
@@ -152,5 +161,30 @@ def son_todos_iguales(lista:list[int])->bool:
             return False
     return True
 
+# 1. problema CerosEnPosicionesPares (inout s:seq⟨Z⟩) {
+# requiere: { T rue }
+# modifica: { s }
+# asegura: { (|s| = |s@pre|) y (para todo i entero, con 0 <= i < |s|, si i es impar entonces s[i] = s@pre[i] y, si i
+# es par, entonces s[i] = 0) }
+# }
 
-          
+def CerosEnPosicionesPares(lista:list[int]):
+    for i in range(len(lista)):
+        if(i%2==0):
+            lista[i]=0
+
+
+def CerosEnPosicionesPares2(lista:list[int])->list[int]:
+    unaLista:list[int]=lista.copy()
+    for i in range(len(unaLista)):
+        if(i%2==0):
+            unaLista[i]=0
+    return unaLista
+
+milista:list[int]=[1,2,3,4]
+milista1:list[int]=[1,2,3,4]
+CerosEnPosicionesPares(milista)
+x=CerosEnPosicionesPares2(milista1)
+print("Mi lista es: " + str(milista))
+print("Mi lista1 es: " + str(milista1))
+print("Mi x es: " + str(x))
