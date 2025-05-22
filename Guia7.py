@@ -74,9 +74,11 @@ def minimo(lista:list[int])->int:
 
 def ordenados(lista:list[int])->bool:
     auxAnterior:int=lista[0]
+    print(auxAnterior)
     for i in range(1,len(lista)):
-        if(auxAnterior>lista[1]):
+        if(auxAnterior>lista[i]):
             return False
+        auxAnterior=lista[i]
     return True
     
 # 7. problema pos maximo (in s:seq⟨Z⟩) : Z {
@@ -188,3 +190,50 @@ x=CerosEnPosicionesPares2(milista1)
 print("Mi lista es: " + str(milista))
 print("Mi lista1 es: " + str(milista1))
 print("Mi x es: " + str(x))
+
+# 6.4. problema columnas ordenadas (in m:seq⟨seq⟨Z⟩⟩) : seq⟨Bool⟩ {
+# requiere: { esM atriz(m) }
+# asegura: { Para todo ´ındice de columna c: 0 ≤ c < |m[0]| → (res[c] = true ↔ ordenados(columna(m, c))) }
+# asegura: {|res| = |m[0]|}
+# }
+# Nota: Reutilizar la funci´on ordenados() implementada previamente para listas
+
+def filas_ordenadas(matriz:list[list[int]])->list[bool]:
+    filaOrdenada:list[bool] = []
+    for i in matriz:
+        filaOrdenada.append(ordenados(i))
+    return filaOrdenada
+
+def columnas_ordenas(matriz:list[list[int]])->list[bool]:
+    columnaOrdenada:list[bool]=[]
+    currentColumna:list[int]=[]
+    for valor in range(len(matriz[0])):
+                columnaOrdenada.append(ordenados(lista_De_Columna(matriz,valor)))
+    return columnaOrdenada
+
+def lista_De_Columna(matriz:list[list[int]],col:int)->list[int]:
+    columna:list[int]=[]
+    for fila in range(len(matriz)):
+        for valor in range(len(matriz[fila])):
+            if(valor==col):
+                columna.append(matriz[fila][valor])
+    return columna
+
+def columnas_ordenas2(matriz:list[list[int]])->list[bool]:
+    columnaOrdenada:list[bool]=[]
+    currentColumna:list[int]=[]
+    for valor in range(len(matriz[0])):
+        currentColumna:list[int]=[]
+        for fila in range(len(matriz)):
+            currentColumna.append(matriz[fila][valor])
+        columnaOrdenada.append(ordenados(currentColumna))
+
+               
+    return columnaOrdenada
+
+
+
+miMatriz:list[list[int]]=[[1,2,0,4],[2,3,41,4],[3,3,4,5]]
+print("Columna " + str(ordenados(lista_De_Columna(miMatriz,2))))
+print(columnas_ordenas2(miMatriz))
+print(ordenados([0,41,4]))
