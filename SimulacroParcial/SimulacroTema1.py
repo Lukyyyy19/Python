@@ -73,22 +73,42 @@ def tuplas_positivas_y_negativas(cola:Cola[tuple[int,int]]):
         cola.put(colaaNeg.get())
 
 #Ejercicio4
-#def resolver_cuenta(s:str)->float:
+def resolver_cuenta(s:str)->float:
+    numeros:list[float] = separar_numeros(s)
+    res:float=0
+    for i in numeros:
+        res+=i
+    return res
      
-# def separar_numeros(s:str)->list[float]:
-#     anterior:str = ""
-#     anterior_fue_decimal:bool = False
-#     res:list[float]=[]
-#     for char in range(len(s)):
-#         if(s[char] == '.'):
-#             res[char-1] = (float(anterior) + float('.'+s[char+1]))
-#             anterior_fue_decimal = True
-#             continue
-#         elif(anterior_fue_decimal):
-#             continue
-#         elif(s[char]!='+' and s[char]!='-'):
-#             res.append(float(s[char]))
-#             anterior = s[char]
-#     return res
+def separar_numeros(s:str)->list[float]:
+    anterior:str = ""
+    anterior_fue_decimal:bool = False
+    numero_actual:str = ""
+    operadores:list[str]=["+","-"]
+    res:list[float]=[]
+    operador_actual:str =""
+    for char in range(len(s)):
+        if(s[char] in operadores):
+            operador_actual = s[char]
+        if(char == 0 and not s[char] in operadores):
+            numero_actual = devolver_hasta_el_siguiente_operador(s,char)
+            res.append(float(operador_actual+numero_actual))
+        if(s[char] in operadores):
+           numero_actual = devolver_hasta_el_siguiente_operador(s,char+1)
+           res.append(float(operador_actual+numero_actual))
+    return res
 
-# print(separar_numeros('-10+15.5-23.5+23.4'))
+def devolver_hasta_el_siguiente_operador(s:str,desde:int)->str:
+    a_devolver:str =""
+    operadores:list[str]=["+","-"]
+    operador_actual:str = ""
+    for indice in range(desde,len(s)):
+        if(not s[indice] in operadores):
+            a_devolver = a_devolver + s[indice]
+        else:
+            return a_devolver
+    return a_devolver    
+        
+#print(devolver_hasta_el_siguiente_operador('10+15.5-23.5+23.4',0))
+print(resolver_cuenta('-10+15.5-23.5+0'))
+#print(float('+10')+10)
