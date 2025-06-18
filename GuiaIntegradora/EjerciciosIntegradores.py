@@ -74,8 +74,30 @@ print(un_responsable_por_turno([['a','a','a','b','a','a','a','a'],
                                 ['a','a','a','b','a','a','a','b'],
                                 ['a','a','a','b','a','a','a','a']]))
         
+#EJERCICIO 11
+def cuantos_sufijos_son_palindromos(texto:str)->int:
+    res:int = 0
+    length:int = len(texto)
+    new_texto:list[str] = []
+    sufijo:str =""
+    for i in range(length):
+        new_texto.append(texto[i])
+    for j in new_texto:
+        sufijo+=j
+        print (sufijo)
+        if(es_palindromo(sufijo)):
+            res+=1
+
+    return res
+def es_palindromo(texto:str)->bool:
+    texto_reverse:str = ""
+    for letra in range(len(texto)-1,-1,-1):
+        texto_reverse+=texto[letra]
         
-            
+    return texto_reverse == texto
+
+print(es_palindromo("sometemos"))
+print(cuantos_sufijos_son_palindromos("anana"))
 
 
 def sumar_ultmios_tres(num:int)->int:
